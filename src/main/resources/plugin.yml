@@ -1,0 +1,4 @@
+name: SpectateFixBukkit
+version: ${project.version}
+main: com.bilicraft.spectatefixbukkit.SpectateFixBukkit
+api-version: 1.17
