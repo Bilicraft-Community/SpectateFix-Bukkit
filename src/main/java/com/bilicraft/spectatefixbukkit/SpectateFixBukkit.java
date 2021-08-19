@@ -6,7 +6,6 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.PluginMessageListener;
 
 public final class SpectateFixBukkit extends JavaPlugin {
     private final Gson gson = new Gson();
@@ -16,7 +15,7 @@ public final class SpectateFixBukkit extends JavaPlugin {
         // Plugin startup logic
         Bukkit.getMessenger().registerIncomingPluginChannel(this, "spectatefix:tp", (channel, receiver, message) -> {
             MessagePacket messagePacket = gson.fromJson(new String(message), MessagePacket.class);
-            getLogger().info("Patching the spectate packet: "+messagePacket);
+            getLogger().info("Patching the spectate packet: "+ messagePacket.getPlayer() +" to "+messagePacket.getTarget());
             Player player = Bukkit.getPlayer(messagePacket.getPlayer());
             if(player == null){
                 return;
